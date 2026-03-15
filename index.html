@@ -776,7 +776,38 @@
   <!-- ═══════════════════════════════════════════════════
        SCREEN 11 — DISEÑOS
   ═══════════════════════════════════════════════════ -->
-  <div id="s-disenos" class="card hidden">
+  <!-- PANTALLA ESPECIAL GEL SEMIPERMANENTE -->
+<div id="s-disenos-semi" class="card hidden">
+  <button class="back-btn" onclick="goBack('s-tecnicas')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    Regresar
+  </button>
+  <div class="section-title">Diseños 🎨</div>
+  <div class="section-sub">Elige una opción para tu Gel Semipermanente.</div>
+  <div class="img-ref-mini" id="diseno-ref-imgs-semi"></div>
+  <div class="choice-grid choice-grid-1" id="diseno-tipo-semi">
+    <button class="choice-btn" id="dis-semi-liso1" onclick="selectDisenoSemi('liso1')">
+      <span class="label">🤍 Liso 1-2 tonos</span>
+      <span class="price">$200</span>
+    </button>
+    <button class="choice-btn" id="dis-semi-liso3" onclick="selectDisenoSemi('liso3')">
+      <span class="label">🎨 Liso 3+ tonos</span>
+      <span class="price">$235</span>
+    </button>
+    <button class="choice-btn" id="dis-semi-diseno" onclick="selectDisenoSemi('diseno')">
+      <span class="label">✨ Diseño personalizado</span>
+    </button>
+  </div>
+  <div id="diseno-semi-liso-specs" class="hidden" style="margin-top:16px;">
+    <label class="form-label">¿Alguna especificación? <span class="optional">(opcional)</span></label>
+    <textarea class="form-input" id="specs-semi-liso" rows="3" placeholder="Ej. Color nude con acabado mate…" style="resize:none; line-height:1.6;"></textarea>
+  </div>
+  <div id="diseno-semi-liso-actions" class="hidden" style="margin-top:14px;">
+    <button class="btn btn-primary" onclick="goTo('s-retiro')">Continuar ✨</button>
+  </div>
+</div>
+
+<div id="s-disenos" class="card hidden">
     <button class="back-btn" onclick="goBack('s-manicure')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
       Regresar
@@ -1174,14 +1205,21 @@ function goToManosFromPies() {
 // ═══════════════════════════════════════════════════
 //  GREEN OPTION TOGGLE
 // ═══════════════════════════════════════════════════
-function toggleGreenOpt(id, name, price, cat) {
+function toggleGreenOpt(id, name, price, cat, group) {
   const el = document.getElementById(id);
   if (el.classList.contains('selected')) {
     el.classList.remove('selected');
     removeFromCart(id);
   } else {
-    el.classList.add('selected');
-    addToCart({id, name, price, cat});
+    if (group) {
+    const extras = tecnicaData[state.tecnica]?.extras || [];
+    extras.forEach(e => {
+      const btn = document.getElementById('le-'+e.id);
+      if (btn) { btn.classList.remove('selected'); removeFromCart(e.id); }
+    });
+  }
+  el.classList.add('selected');
+  addToCart({id, name, price, cat});
   }
 }
 
@@ -1191,11 +1229,10 @@ function toggleGreenOpt(id, name, price, cat) {
 const tecnicaData = {
   'gel-semi': {
     name:'Gel Semipermanente',
-    largos:[
-      {id:'gs-1t', name:'De 1 a 2 tonos', price:200},
-      {id:'gs-3t', name:'De 3 o más tonos', price:235},
+largos:[
+      {id:'gs-solo', name:'Solo gel', price:200},
     ],
-    extras:[
+extras:[
       {id:'gs-kap', name:'Kapping', price:125},
       {id:'gs-vit', name:'Vitamina', price:150},
       {id:'gs-fuerza', name:'Gel Fuerza', price:165},
@@ -1299,7 +1336,7 @@ function buildLargoScreen(key) {
   if (data.extras.length > 0) {
     extrasEl.innerHTML = '<div class="divider"></div><p style="font-size:0.82rem;color:var(--text-soft);margin-bottom:10px;">Opciones adicionales ✨</p>' +
       data.extras.map(e=>`
-        <div class="green-option" id="le-${e.id}" onclick="toggleGreenOpt('le-${e.id}','${e.name}',${e.price},'manos')">
+        <div class="green-option" id="le-${e.id}" onclick="toggleGreenOpt('le-${e.id}','${e.name}',${e.price},'manos','group')">
           <span class="g-label">✨ ${e.name}</span>
           <span class="g-price">+$${e.price}</span>
         </div>
@@ -1412,6 +1449,27 @@ function showRefImages(containerId) {
 // ═══════════════════════════════════════════════════
 //  DISEÑOS
 // ═══════════════════════════════════════════════════
+function selectDisenoSemi(tipo) {
+  state.disenoTipo = tipo;
+  document.querySelectorAll('#diseno-tipo-semi .choice-btn').forEach(b=>b.classList.remove('selected'));
+  document.getElementById('dis-semi-'+tipo).classList.add('selected');
+  removeFromCart('gs-1t'); removeFromCart('gs-3t');
+  document.getElementById('diseno-semi-liso-actions').classList.add('hidden');
+  document.getElementById('diseno-semi-liso-specs').classList.add('hidden');
+  if (tipo==='liso1') {
+    addToCart({id:'gs-1t', name:'Gel Semipermanente 1-2 tonos', price:200, cat:'manos'});
+    document.getElementById('diseno-semi-liso-specs').classList.remove('hidden');
+    document.getElementById('diseno-semi-liso-actions').classList.remove('hidden');
+  } else if (tipo==='liso3') {
+    addToCart({id:'gs-3t', name:'Gel Semipermanente 3+ tonos', price:235, cat:'manos'});
+    document.getElementById('diseno-semi-liso-specs').classList.remove('hidden');
+    document.getElementById('diseno-semi-liso-actions').classList.remove('hidden');
+  } else {
+    showRefImages('diseno-ref-imgs-semi');
+    buildDesignList();
+    setTimeout(()=>goTo('s-personaliza'), 250);
+  }
+}
 function selectDisenoTipo(tipo) {
   state.disenoTipo = tipo;
   document.querySelectorAll('#diseno-tipo .choice-btn').forEach(b=>b.classList.remove('selected'));
