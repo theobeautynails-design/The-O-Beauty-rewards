@@ -620,8 +620,8 @@ select.form-input{cursor:pointer;}
     <div class="card">
       <div class="confirm-wrap">
         <div class="confirm-icon">🌸</div>
-        <div class="confirm-title">¡Tu cita está lista!</div>
-        <div id="cfBadge" class="confirm-badge">✅ Cita registrada</div>
+        <div class="confirm-title">¡Cita pendiente de confirmación! ⏳</div>
+        <div id="cfBadge" class="confirm-badge">⏳ Pendiente de confirmación</div>
         <div class="confirm-detail">
           <div class="confirm-detail-title">Resumen de tu cita</div>
           <div class="cd-row"><span class="cd-icon">👤</span><div><span class="cd-lbl">Nombre</span><span class="cd-val" id="cfNombre">—</span></div></div>
@@ -1104,7 +1104,7 @@ async function buildConfirm(){
   const apertura=ST.isWeekend?'\n⚠️ *Solicitud de apertura especial — pendiente de confirmación*':'';
   const badge=document.getElementById('cfBadge');
   if(ST.isAperturaPendiente){badge.textContent='⏳ Pendiente de confirmación';badge.classList.add('confirm-apertura-badge');}
-  else{badge.textContent='✅ Cita registrada';badge.classList.remove('confirm-apertura-badge');}
+  else{badge.textContent='⏳ Pendiente de confirmación';badge.classList.remove('confirm-apertura-badge');}
   document.getElementById('cfNombre').textContent=ST.nombre;
   document.getElementById('cfFecha').textContent=dateStr;
   document.getElementById('cfRetiro').textContent=s.retiro;
