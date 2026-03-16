@@ -636,6 +636,16 @@ select.form-input{cursor:pointer;}
           <div class="cs-step"><div class="cs-num">1</div><div class="cs-text">Realiza tu <strong>depósito de $100</strong> y toma foto del comprobante</div></div>
           <div class="cs-step"><div class="cs-num">2</div><div class="cs-text">Toca <strong>"Confirmar por WhatsApp"</strong> y adjunta la foto del comprobante</div></div>
           <div class="cs-step"><div class="cs-num">3</div><div class="cs-text">¡Listo! Te confirmamos en menos de <strong>24 horas</strong> 🌸</div></div>
+          </div>
+<a href="https://mpago.li/1Dw8n11" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,#00B1EA,#009EE3);color:#fff;border-radius:13px;padding:14px 18px;font-family:'Playfair Display',serif;font-size:15px;font-weight:600;text-decoration:none;margin-bottom:10px;margin-top:14px;box-shadow:0 4px 16px rgba(0,177,234,0.3);">
+  💳 Pagar depósito en línea — Mercado Pago
+</a>
+<div style="display:flex;align-items:center;gap:10px;margin:10px 0;">
+  <div style="flex:1;height:1px;background:var(--rosa);"></div>
+  <span style="font-size:11px;color:var(--text-light);">o paga por transferencia</span>
+  <div style="flex:1;height:1px;background:var(--rosa);"></div>
+</div>
+
         </div>
         <div class="confirm-divider"><span>Agregar al calendario</span></div>
         <div class="cal-btns">
@@ -1095,7 +1105,7 @@ function selectOpt(key,val,el){
   el.classList.add('selected');
   if(key==='diseno'){val==='Personalizado'?document.getElementById('cotizaBox').classList.add('open'):document.getElementById('cotizaBox').classList.remove('open');}
   const s=ST.survey;
-  document.getElementById('btnToConfirm').disabled=!(s.retiro&&s.servicio&&s.tecnica&&s.diseno&&s.diseno==='Liso');
+  document.getElementById('btnToConfirm').disabled=!(s.retiro&&s.servicio&&s.tecnica&&s.diseno&&s.diseno!=='');
 }
 
 async function buildConfirm(){

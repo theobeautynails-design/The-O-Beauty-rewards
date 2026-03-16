@@ -166,14 +166,14 @@
   .option-text p { font-size: 11px; color: var(--text-muted); letter-spacing: 0.3px; }
 
   /* ── RULES GRID ── */
-  .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; width: 100%; }
+  .rules-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; width: 100%; }
   .rule-pill {
     background: rgba(255,255,255,0.8); border: 2px solid var(--pink-mid);
-    border-radius: 14px; padding: 14px 10px; text-align: center;
+   border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; gap: 16px;
     box-shadow: 3px 3px 0 var(--pink-mid);
   }
   .rule-pill .rule-val {
-    font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--red);
+    font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--red); min-width: 60px; text-align: center; flex-shrink: 0;
   }
   .rule-pill .rule-desc { font-size: 10px; color: var(--text-muted); line-height: 1.4; margin-top: 3px; font-weight: 500; letter-spacing: 0.3px; }
 
@@ -361,10 +361,10 @@
     </div>
 
     <div class="rules-grid">
-      <div class="rule-pill"><div class="rule-val">$1</div><div class="rule-desc">por cada $10<br>gastados</div></div>
-      <div class="rule-pill"><div class="rule-val">60%</div><div class="rule-desc">máximo a cubrir<br>con crédito</div></div>
-      <div class="rule-pill"><div class="rule-val">$50</div><div class="rule-desc">mínimo para<br>usar crédito</div></div>
-      <div class="rule-pill"><div class="rule-val">1 año</div><div class="rule-desc">vigencia del<br>crédito</div></div>
+      <div class="rule-pill"><div class="rule-val">$1</div><div class="rule-desc">Ganas <strong>$1 de crédito</strong> por cada $10 gastados</div></div>
+      <div class="rule-pill"><div class="rule-val">60%</div><div class="rule-desc">Cubre hasta el <strong>60% de tu servicio</strong> con créditos</div></div>
+      <div class="rule-pill"><div class="rule-val">$50</div><div class="rule-desc">Mínimo <strong>$50 en créditos</strong> para canjear</div></div>
+      <div class="rule-pill"><div class="rule-val">1 año</div><div class="rule-desc">Tus créditos tienen <strong>1 año de vigencia</strong></div></div>
     </div>
 
     <div class="home-options">
