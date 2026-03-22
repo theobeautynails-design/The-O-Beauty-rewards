@@ -1198,7 +1198,7 @@ async function loadAdminCitas(){
     const res=await fetch(`${SCRIPT_URL}?action=citas&fecha=`);
     const json=await res.json();
     if(json.status==='ok'){
-      const citas=json.data.map(c=>({...c, fechaISO: c.fechaISO.split('T')[0]})).sort((a,b)=>(a.fechaISO+a.hora).localeCompare(b.fechaISO+b.hora));
+      const citas=json.data.map(c=>({...c, fechaISO: c.fechaISO ? c.fechaISO.split('T')[0] : ''})).sort((a,b)=>(a.fechaISO+(a.hora||'')).localeCompare(b.fechaISO+(b.hora||'')));
       document.getElementById('adminCitasCount').textContent=`${citas.length} cita${citas.length!==1?'s':''} activa${citas.length!==1?'s':''}`;
       if(citas.length===0){document.getElementById('adminCitasList').innerHTML='<div class="empty-state"><div class="empty-icon">📭</div><p>No hay citas aún</p></div>';return;}
       const today=toISO(new Date());
