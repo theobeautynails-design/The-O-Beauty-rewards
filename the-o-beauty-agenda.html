@@ -952,7 +952,7 @@ function renderCal(){
     const iso=toISO(date);
     const citasHoy=ST.citasCache[iso]||[];
     const chipsHtml=citasHoy.length>0
-      ?`<div class="day-chips">${citasHoy.slice(0,2).map(c=>`<div class="day-chip">${c.nombre.split(' ')[0]}</div>`).join('')}${citasHoy.length>2?`<div class="day-chip">+${citasHoy.length-2}</div>`:''}</div>`
+      ?`<div class="day-chips">${citasHoy.slice(0,2).map(c=>`<div class="day-chip">${'Ocupado · '+c.hora}</div>`).join('')}${citasHoy.length>2?`<div class="day-chip">+${citasHoy.length-2}</div>`:''}</div>`
       :(isPast?'':isWe?`<div class="dot dot-we"></div>`:`<div class="dot"></div>`);
     let cls='cal-day';
     if(isPast) cls+=' past';
