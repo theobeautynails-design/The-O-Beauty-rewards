@@ -923,7 +923,7 @@ function mostrarNivel(data){
 
 async function loadCitasMes(){
   try{
-    const res=await fetch(`${SCRIPT_URL}?action=citas`);
+    const res=await fetch(`${SCRIPT_URL}?action=citas&fecha=`);
     const json=await res.json();
     if(json.status==='ok'&&json.data){
       ST.citasCache={};
@@ -1012,7 +1012,8 @@ function calcMinutosBloqueados(citasDelDia){
     const horaBase=c.hora.replace(/\(.*\)/,'').trim();
     const inicio=horaAMin(horaBase);
     if(inicio<0)return;
-    const duracion=VENTANAS_FIJAS[horaBase]||120;
+    const esVipFlex=c.tipo==='Flexible'||c.tipo==='VIP'||c.tipo==='Õ VIP'||c.tipo==='Õ Flexible';
+    const duracion=esVipFlex?180:(VENTANAS_FIJAS[horaBase]||180);
     for(let t=inicio;t<inicio+duracion;t+=30) bloqueados.add(t);
   });
   return bloqueados;
