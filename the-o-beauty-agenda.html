@@ -1034,6 +1034,7 @@ async function pickDay(y,m,d,el){
   const iso=toISO(ST.selectedDate);
   const dow=ST.selectedDate.getDay();
   document.getElementById('slotDateLabel').innerHTML=`Horarios para el <em>${DAY_NAMES[dow]} ${d} de ${MONTHS_F[m]}</em>`;
+  await loadCitasMes();
   const citasDelDia=ST.citasCache[iso]||[];
   const minBloqueados=calcMinutosBloqueados(citasDelDia);
   let html='';
