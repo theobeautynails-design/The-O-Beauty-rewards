@@ -517,7 +517,7 @@ body{font-family:'Nunito',sans-serif;background:var(--soft);color:var(--text);mi
       <div class="fr">
         <div class="fg"><label class="fl">Instagram</label><input type="text" id="n-ig" class="fi" placeholder="@usuario"></div>
         <div class="fg"><label class="fl">Nivel inicial</label>
-          <select id="n-lv" class="se"><option value="essential">Õ Essential</option><option value="prestige">Õ Prestige</option><option value="vip">Õ VIP</option><option value="rewards">Rewards</option></select>
+          <select id="n-lv" class="se"><option value="essential">Õ Essential</option><option value="prestige">Õ Prestige</option><option value="vip">Õ VIP</option><option value="sin-nivel">Sin Nivel</option></select>
         </div>
       </div>
       <div class="fg"><label class="fl">¿Cómo nos conoció?</label>
@@ -861,7 +861,7 @@ function renderCard(c,adm){
   else{bb.style.color='#999';hn.style.color='#999';} // sin-nivel
   hn.textContent=c.name.split(' ')[0];
   const card=curCard(c),bd=isBd(c.birth),r=RW[c.level]||RW['essential'];
-  const lvlLabel={essential:'Õ Essential',prestige:'Õ Prestige',vip:'✦ Õ VIP ✦',rewards:'Rewards 🌸','sin-nivel':'Sin nivel asignado'}[c.level]||'Sin nivel';
+  const lvlLabel={essential:'Õ Essential',prestige:'Õ Prestige',vip:'✦ Õ VIP ✦','sin-nivel':'Sin nivel asignado'}[c.level]||'Sin nivel';
 
   // build full history (all cards)
   const allVisits=c.cards.flatMap((cd,ci)=>cd.visits.map(v=>({...v,cardNum:ci+1})));
@@ -953,7 +953,7 @@ function renderCard(c,adm){
         <div style="background:var(--soft);border-radius:14px;padding:.9rem 1rem;">
           <div style="font-size:.65rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--light);margin-bottom:.6rem;">Asignar nivel al programa</div>
           <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
-            ${['essential','prestige','vip','rewards'].map(lv=>`<button onclick="changeLevel('${lv}')" style="flex:1;min-width:60px;padding:.6rem .3rem;border-radius:10px;border:2px solid var(--blush);background:white;color:var(--mid);font-size:.65rem;font-weight:800;cursor:pointer;">${lv==='essential'?'Essential':lv==='prestige'?'Prestige':lv==='vip'?'VIP':'Rewards'}</button>`).join('')}
+            ${['essential','prestige','vip','sin-nivel'].map(lv=>`<button onclick="changeLevel('${lv}')" style="flex:1;min-width:60px;padding:.6rem .3rem;border-radius:10px;border:2px solid var(--blush);background:white;color:var(--mid);font-size:.65rem;font-weight:800;cursor:pointer;">${lv==='essential'?'Essential':lv==='prestige'?'Prestige':lv==='vip'?'VIP':'Sin Nivel'}</button>`).join('')}
           </div>
         </div>
       </div></div>`:''}`;
@@ -1029,7 +1029,7 @@ function renderCard(c,adm){
         <div style="background:var(--soft);border-radius:14px;padding:.9rem 1rem;margin-top:.3rem;">
           <div style="font-size:.65rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--light);margin-bottom:.6rem;">Cambiar nivel</div>
           <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
-            ${['sin-nivel','essential','prestige','vip','rewards'].map(lv=>`<button onclick="changeLevel('${lv}')" style="flex:1;min-width:60px;padding:.5rem .3rem;border-radius:10px;border:2px solid ${c.level===lv?'var(--rose)':'var(--blush)'};background:${c.level===lv?'var(--rose)':'white'};color:${c.level===lv?'white':'var(--mid)'};font-size:.62rem;font-weight:800;cursor:pointer;">${lv==='sin-nivel'?'Sin nivel':lv==='essential'?'Essential':lv==='prestige'?'Prestige':lv==='vip'?'VIP':'Rewards'}</button>`).join('')}
+            ${['sin-nivel','essential','prestige','vip'].map(lv=>`<button onclick="changeLevel('${lv}')" style="flex:1;min-width:60px;padding:.5rem .3rem;border-radius:10px;border:2px solid ${c.level===lv?'var(--rose)':'var(--blush)'};background:${c.level===lv?'var(--rose)':'white'};color:${c.level===lv?'white':'var(--mid)'};font-size:.62rem;font-weight:800;cursor:pointer;">${lv==='sin-nivel'?'Sin nivel':lv==='essential'?'Essential':lv==='prestige'?'Prestige':'VIP'}</button>`).join('')}
           </div>
         </div>
         <button class="bac" style="background:${c.exemptExpiry?'linear-gradient(135deg,#A0A0A0,#707070)':'linear-gradient(135deg,#F0F0F0,#E0E0E0)'};color:${c.exemptExpiry?'white':'var(--mid)'};box-shadow:none;" onclick="toggleExempt()">
@@ -1147,7 +1147,7 @@ function newCard(){
   else if(completedCards>=2) curC.level='vip';
   curC.cards.push({stamps:0,visits:[],rewards:{5:false,10:false},rewardUnlocked:{5:false,10:false}});
   sv();syncToSheets(curC);
-  const newLvl={essential:'Õ Essential',prestige:'Õ Prestige',vip:'Õ VIP',rewards:'Rewards'}[curC.level];
+  const newLvl={essential:'Õ Essential',prestige:'Õ Prestige',vip:'Õ VIP'}[curC.level];
   showToast(`✦ ¡Subió a ${newLvl}! Nueva tarjeta iniciada`);
   renderCard(curC,true);
 }
@@ -1171,7 +1171,7 @@ function saveClient(){
   showToast(`✦ ${name} registrada`);
 }
 
-function lvl(l){return{essential:'Õ Essential',prestige:'Õ Prestige',vip:'Õ VIP','sin-nivel':'Sin nivel',rewards:'Rewards 🌸'}[l]||l;}
+function lvl(l){return{essential:'Õ Essential',prestige:'Õ Prestige',vip:'Õ VIP','sin-nivel':'Sin nivel'}[l]||l;}
 function isBd(b){if(!b)return false;return new Date(b+'T12:00:00').getMonth()===new Date().getMonth();}
 function fmtD(d){return new Date(d+'T12:00:00').toLocaleDateString('es-MX',{day:'numeric',month:'short',year:'numeric'});}
 function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}
