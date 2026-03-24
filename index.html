@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Õ Beauty — Uñas que hablan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --coral:      #D94F3D;
+  --coral-dark: #B83D2C;
+  --coral-light:#F2C4CE;
+  --rosa:       #F2C4CE;
+  --rosa-mid:   #E8829A;
+  --vino:       #7B2D3E;
+  --crema:      #FFF8F0;
+  --crema-dark: #F5EDE0;
+  --blush:      #FDE8ED;
+  --text:       #2A1A15;
+  --text-light: #8A6A62;
+  --shadow:     rgba(217,79,61,0.15);
+  --green:      #25D366;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'DM Sans',sans-serif;
+  background:var(--crema);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ── NAVBAR ── */
+.navbar {
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  background:rgba(255,248,240,.94);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(242,196,206,.4);
+  padding:11px 20px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.nav-logo { display:flex; align-items:center; gap:8px; text-decoration:none; }
+.nav-logo img { width:36px; height:36px; object-fit:contain; }
+.nav-brand-text {
+  font-family:'Playfair Display',serif;
+  font-size:16px; font-weight:700; color:var(--text);
+}
+.nav-brand-text em { font-style:italic; color:var(--coral); }
+.nav-cta {
+  background:linear-gradient(135deg,var(--coral),var(--coral-dark));
+  color:#fff; border:none; border-radius:50px;
+  padding:9px 20px; font-size:13px; font-weight:600;
+  cursor:pointer; text-decoration:none;
+  box-shadow:0 4px 12px var(--shadow);
+  transition:all .2s;
+}
+.nav-cta:hover { transform:translateY(-2px); box-shadow:0 6px 18px var(--shadow); }
+
+/* ── HERO ── */
+.hero {
+  min-height:100svh;
+  background:linear-gradient(160deg, var(--blush) 0%, var(--crema) 55%, #fff 100%);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center; padding:90px 24px 60px;
+  position:relative; overflow:hidden;
+}
+.hero-blob1 {
+  position:absolute; top:-100px; right:-100px;
+  width:380px; height:380px; border-radius:50%;
+  background:radial-gradient(circle, rgba(242,196,206,.55) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-blob2 {
+  position:absolute; bottom:-80px; left:-80px;
+  width:300px; height:300px; border-radius:50%;
+  background:radial-gradient(circle, rgba(217,79,61,.1) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-logo {
+  width:110px; height:110px; object-fit:contain;
+  margin-bottom:18px;
+  animation:floatLogo 4s ease-in-out infinite;
+  filter:drop-shadow(0 8px 20px rgba(217,79,61,.25));
+}
+@keyframes floatLogo {
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-10px); }
+}
+.hero-eyebrow {
+  font-size:11px; letter-spacing:4px; text-transform:uppercase;
+  color:var(--coral); font-weight:500; margin-bottom:14px;
+  animation:fadeUp .5s ease both;
+}
+.hero h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(34px,10vw,62px);
+  font-weight:700; line-height:1.1; margin-bottom:10px;
+  animation:fadeUp .6s ease both;
+}
+.hero h1 em { font-style:italic; color:var(--coral); }
+.hero-script {
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(20px,6vw,32px);
+  color:var(--vino); margin-bottom:18px;
+  animation:fadeUp .65s ease both;
+}
+.hero-sub {
+  font-size:clamp(14px,4vw,16px); color:var(--text-light);
+  font-weight:300; line-height:1.7; max-width:320px;
+  margin:0 auto 32px;
+  animation:fadeUp .7s ease both;
+}
+.hero-btns {
+  display:flex; flex-direction:column; gap:12px;
+  width:100%; max-width:300px;
+  animation:fadeUp .8s ease both;
+}
+.btn-primary {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  background:linear-gradient(135deg,var(--coral),var(--coral-dark));
+  color:#fff; border:none; border-radius:50px;
+  padding:16px 28px;
+  font-family:'Playfair Display',serif;
+  font-size:16px; font-weight:600; cursor:pointer;
+  text-decoration:none;
+  box-shadow:0 8px 24px rgba(217,79,61,.35);
+  transition:all .25s;
+}
+.btn-primary:hover { transform:translateY(-3px); box-shadow:0 12px 32px rgba(217,79,61,.45); }
+.btn-secondary {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  background:#fff; color:var(--vino);
+  border:2px solid var(--rosa-mid); border-radius:50px;
+  padding:14px 28px; font-size:14px; font-weight:500;
+  cursor:pointer; text-decoration:none; transition:all .25s;
+}
+.btn-secondary:hover { border-color:var(--vino); transform:translateY(-2px); }
+.hero-trust {
+  display:flex; gap:8px; justify-content:center;
+  flex-wrap:wrap; margin-top:28px;
+  animation:fadeUp .9s ease both;
+}
+.trust-pill {
+  background:#fff; border:1.5px solid var(--rosa);
+  border-radius:50px; padding:6px 14px;
+  font-size:12px; color:var(--text-light);
+  display:flex; align-items:center; gap:5px;
+  box-shadow:0 2px 8px var(--shadow);
+}
+
+/* ── SECCIÓN SOBRE OLI ── */
+.sobre {
+  background:linear-gradient(135deg,var(--vino) 0%,#5a1e2e 100%);
+  padding:60px 24px; color:#fff; text-align:center;
+}
+.sobre-inner { max-width:600px; margin:0 auto; }
+.sobre-tag {
+  display:inline-block; background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.3);
+  border-radius:50px; padding:5px 16px;
+  font-size:11px; letter-spacing:2px; text-transform:uppercase;
+  margin-bottom:18px; color:var(--rosa);
+}
+.sobre h2 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(22px,6vw,34px); font-weight:700;
+  line-height:1.2; margin-bottom:8px;
+}
+.sobre h2 em { font-style:italic; color:var(--rosa); }
+.sobre-script {
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(18px,5vw,26px);
+  color:rgba(255,255,255,.8); margin-bottom:20px;
+}
+.sobre p {
+  font-size:14px; line-height:1.8; opacity:.88;
+  max-width:480px; margin:0 auto 24px;
+}
+.sobre-stats {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:16px; margin-top:28px;
+}
+.stat {
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:16px; padding:16px 10px;
+}
+.stat-num {
+  font-family:'Playfair Display',serif;
+  font-size:26px; font-weight:700; color:#fff;
+  display:block;
+}
+.stat-label { font-size:11px; opacity:.75; margin-top:2px; }
+
+/* ── SERVICIOS ── */
+.servicios { padding:64px 24px; background:#fff; }
+.servicios-inner { max-width:700px; margin:0 auto; }
+.section-header { margin-bottom:28px; }
+.section-tag {
+  display:inline-block; background:var(--blush);
+  color:var(--vino); border-radius:50px;
+  padding:4px 14px; font-size:11px; letter-spacing:1.5px;
+  text-transform:uppercase; font-weight:600; margin-bottom:10px;
+}
+.section-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(22px,6vw,34px); font-weight:700;
+  line-height:1.2; margin-bottom:8px;
+}
+.section-title em { font-style:italic; color:var(--coral); }
+.section-script {
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(16px,4vw,22px); color:var(--rosa-mid);
+}
+.servicios-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:12px;
+}
+@media(max-width:380px){ .servicios-grid{ grid-template-columns:1fr; } }
+.serv-card {
+  background:var(--crema);
+  border:1.5px solid rgba(242,196,206,.7);
+  border-radius:20px; padding:20px 16px;
+  transition:all .25s; position:relative;
+  overflow:hidden;
+}
+.serv-card::before {
+  content:''; position:absolute;
+  top:0; right:0; width:60px; height:60px;
+  background:radial-gradient(circle at top right, rgba(217,79,61,.08), transparent 70%);
+}
+.serv-card:hover { border-color:var(--coral); transform:translateY(-4px); box-shadow:0 10px 28px var(--shadow); }
+.serv-icon { font-size:26px; margin-bottom:10px; }
+.serv-name {
+  font-family:'Playfair Display',serif;
+  font-size:17px; font-weight:700; margin-bottom:4px; color:var(--vino);
+}
+.serv-desc { font-size:12px; color:var(--text-light); line-height:1.5; margin-bottom:12px; }
+.serv-meta { font-size:11px; color:var(--text-light); margin-bottom:10px; }
+.serv-meta span { display:block; line-height:1.7; }
+.serv-precio {
+  background:linear-gradient(135deg,var(--coral),var(--coral-dark));
+  color:#fff; border-radius:50px; padding:5px 14px;
+  font-size:13px; font-weight:700; display:inline-block;
+}
+.serv-nota {
+  font-size:10px; color:var(--text-light);
+  font-style:italic; margin-top:6px; display:block;
+}
+.servicios-cta { text-align:center; margin-top:24px; }
+
+/* ── GALERÍA ── */
+.galeria { padding:64px 24px; background:var(--crema-dark); }
+.galeria-inner { max-width:700px; margin:0 auto; }
+.galeria-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr); gap:8px;
+  margin-top:28px;
+}
+@media(max-width:380px){ .galeria-grid{ grid-template-columns:repeat(2,1fr); } }
+.g-item {
+  border-radius:14px; overflow:hidden;
+  aspect-ratio:1; cursor:pointer; position:relative;
+}
+.g-item:nth-child(1) { grid-column:span 2; aspect-ratio:2/1.1; }
+.g-item:nth-child(7) { grid-column:span 2; aspect-ratio:2/1.1; }
+.g-item img {
+  width:100%; height:100%; object-fit:cover;
+  transition:transform .4s ease;
+}
+.g-item:hover img { transform:scale(1.07); }
+.g-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to top,rgba(123,45,62,.6) 0%,transparent 55%);
+  opacity:0; transition:opacity .3s;
+  display:flex; align-items:flex-end; padding:10px;
+}
+.g-item:hover .g-overlay { opacity:1; }
+.g-overlay span { color:#fff; font-size:11px; font-weight:500; }
+
+/* ── POR QUÉ OLI ── */
+.porqueli { padding:64px 24px; background:#fff; }
+.porqueli-inner { max-width:700px; margin:0 auto; }
+.porqueli-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:12px;
+  margin-top:28px;
+}
+@media(max-width:380px){ .porqueli-grid{ grid-template-columns:1fr; } }
+.pq-card {
+  background:var(--crema);
+  border-radius:20px; padding:20px 16px;
+  border:1.5px solid rgba(242,196,206,.5);
+  transition:all .2s;
+}
+.pq-card:hover { border-color:var(--rosa-mid); transform:translateY(-3px); box-shadow:0 8px 22px var(--shadow); }
+.pq-icon { font-size:28px; margin-bottom:10px; }
+.pq-title {
+  font-family:'Playfair Display',serif;
+  font-size:15px; font-weight:700; color:var(--vino); margin-bottom:5px;
+}
+.pq-desc { font-size:12px; color:var(--text-light); line-height:1.6; }
+
+/* ── CTA AGENDA ── */
+.cta-section {
+  background:linear-gradient(135deg,var(--coral) 0%,var(--coral-dark) 50%,var(--vino) 100%);
+  padding:64px 24px; text-align:center; color:#fff;
+  position:relative; overflow:hidden;
+}
+.cta-section::before {
+  content:'💅'; position:absolute;
+  font-size:180px; opacity:.07;
+  top:-20px; right:-10px; line-height:1;
+  pointer-events:none;
+}
+.cta-section::after {
+  content:'🌸'; position:absolute;
+  font-size:120px; opacity:.07;
+  bottom:-20px; left:-10px; line-height:1;
+  pointer-events:none;
+}
+.cta-inner { max-width:500px; margin:0 auto; position:relative; z-index:1; }
+.cta-script {
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(18px,5vw,26px);
+  color:rgba(255,255,255,.85); margin-bottom:10px;
+}
+.cta-inner h2 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(26px,8vw,40px); font-weight:700;
+  line-height:1.1; margin-bottom:14px;
+}
+.cta-inner h2 em { font-style:italic; }
+.cta-inner p { font-size:14px; opacity:.88; line-height:1.7; margin-bottom:28px; }
+.btn-white {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  background:#fff; color:var(--coral);
+  border:none; border-radius:50px;
+  padding:16px 32px;
+  font-family:'Playfair Display',serif;
+  font-size:16px; font-weight:700; cursor:pointer;
+  text-decoration:none; width:100%; max-width:320px;
+  box-shadow:0 8px 24px rgba(0,0,0,.2); transition:all .25s;
+}
+.btn-white:hover { transform:translateY(-3px); }
+
+/* ── PROGRAMAS ── */
+.programas { padding:64px 24px; background:var(--crema); }
+.programas-inner { max-width:700px; margin:0 auto; }
+.prog-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:14px;
+  margin-top:28px;
+}
+@media(max-width:380px){ .prog-grid{ grid-template-columns:1fr; } }
+.prog-card {
+  border-radius:22px; padding:24px 18px;
+  text-decoration:none; display:block;
+  transition:all .25s; border:2px solid;
+}
+.prog-card:hover { transform:translateY(-5px); box-shadow:0 12px 32px var(--shadow); }
+.prog-loyalty {
+  background:linear-gradient(135deg,var(--blush),#fff);
+  border-color:rgba(232,130,154,.3); color:var(--text);
+}
+.prog-rewards {
+  background:linear-gradient(135deg,var(--vino),#5a1e2e);
+  border-color:var(--vino); color:#fff;
+}
+.prog-icon { font-size:32px; margin-bottom:12px; }
+.prog-name {
+  font-family:'Playfair Display',serif;
+  font-size:18px; font-weight:700; margin-bottom:6px;
+}
+.prog-desc { font-size:12px; line-height:1.6; opacity:.85; }
+.prog-arrow { font-size:20px; margin-top:14px; display:block; }
+
+/* ── UBICACIÓN ── */
+.ubicacion { padding:64px 24px; background:#fff; }
+.ubicacion-inner { max-width:700px; margin:0 auto; }
+.ubic-card {
+  background:var(--crema);
+  border:1.5px solid rgba(242,196,206,.7);
+  border-radius:22px; padding:24px 20px;
+  margin-top:24px;
+}
+.ubic-row {
+  display:flex; gap:12px; align-items:flex-start;
+  padding:12px 0; border-bottom:1px solid rgba(242,196,206,.4);
+}
+.ubic-row:last-of-type { border-bottom:none; }
+.ubic-icon { font-size:20px; flex-shrink:0; margin-top:2px; }
+.ubic-label {
+  font-size:10px; color:var(--text-light);
+  letter-spacing:1px; text-transform:uppercase;
+  display:block; margin-bottom:2px;
+}
+.ubic-val { font-size:14px; font-weight:600; }
+.btn-maps {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  background:linear-gradient(135deg,var(--coral),var(--coral-dark));
+  color:#fff; border:none; border-radius:14px;
+  padding:14px; font-size:14px; font-weight:600;
+  cursor:pointer; text-decoration:none;
+  margin-top:16px; transition:all .2s;
+  box-shadow:0 4px 14px var(--shadow);
+}
+.btn-maps:hover { transform:translateY(-2px); }
+
+/* ── FOOTER ── */
+footer {
+  background:var(--vino); color:rgba(255,255,255,.75);
+  text-align:center; padding:36px 24px;
+  font-size:13px; line-height:1.9;
+}
+.footer-logo {
+  font-family:'Dancing Script',cursive;
+  font-size:28px; font-weight:700; color:#fff;
+  margin-bottom:6px;
+}
+.footer-tagline {
+  font-family:'Playfair Display',serif;
+  font-size:13px; font-style:italic;
+  color:var(--rosa); margin-bottom:16px;
+}
+.footer-links { display:flex; justify-content:center; gap:16px; margin-bottom:14px; }
+.footer-links a { color:var(--rosa); text-decoration:none; font-size:13px; }
+.footer-social { display:flex; justify-content:center; gap:12px; margin-bottom:18px; }
+.footer-social a {
+  width:40px; height:40px; border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.25);
+  display:flex; align-items:center; justify-content:center;
+  font-size:17px; transition:all .2s; text-decoration:none; color:#fff;
+}
+.footer-social a:hover { border-color:var(--rosa); background:rgba(242,196,206,.15); }
+.footer-copy { font-size:11px; opacity:.5; margin-top:10px; }
+
+/* ── WHATSAPP FLOTANTE ── */
+.wa-float {
+  position:fixed; bottom:24px; right:20px;
+  width:58px; height:58px; background:var(--green);
+  border-radius:50%; display:flex;
+  align-items:center; justify-content:center;
+  font-size:27px;
+  box-shadow:0 6px 20px rgba(37,211,102,.4);
+  cursor:pointer; text-decoration:none;
+  z-index:99; transition:all .25s;
+  animation:pulseWa 2.5s ease-in-out infinite;
+}
+.wa-float:hover { transform:scale(1.12); }
+@keyframes pulseWa {
+  0%,100%{ box-shadow:0 6px 20px rgba(37,211,102,.4); }
+  50%{ box-shadow:0 6px 32px rgba(37,211,102,.7); }
+}
+
+/* ── ANIMACIONES ── */
+@keyframes fadeUp {
+  from{ opacity:0; transform:translateY(22px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+.reveal {
+  opacity:0; transform:translateY(26px);
+  transition:opacity .65s ease, transform .65s ease;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-delay-1 { transition-delay:.1s; }
+.reveal-delay-2 { transition-delay:.2s; }
+.reveal-delay-3 { transition-delay:.3s; }
+
+/* ── LIGHTBOX ── */
+.lightbox {
+  display:none; position:fixed; inset:0;
+  background:rgba(0,0,0,.92); z-index:200;
+  align-items:center; justify-content:center; padding:20px;
+}
+.lightbox.open { display:flex; }
+.lightbox img {
+  max-width:100%; max-height:90vh;
+  border-radius:16px; object-fit:contain;
+}
+.lb-close {
+  position:absolute; top:18px; right:18px;
+  color:#fff; font-size:30px; cursor:pointer;
+  background:none; border:none; line-height:1;
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="#" class="nav-logo">
+    <img src="img/logo_verde-.png" alt="The Õ Beauty">
+    <span class="nav-brand-text">The <em>Õ</em> Beauty</span>
+  </a>
+  <a href="the-o-beauty-agenda.html" class="nav-cta">💅 Agendar</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob1"></div>
+  <div class="hero-blob2"></div>
+  <img src="img/logo_verde-.png" alt="The Õ Beauty" class="hero-logo">
+  <p class="hero-eyebrow">✨ Nails Studio · CDMX</p>
+  <h1>Uñas que<br><em>hablan</em></h1>
+  <p class="hero-script">por Oli 💅</p>
+  <p class="hero-sub">Diseños únicos, mano alzada y acrílicas. Más de 8 años haciendo uñas con amor en Narvarte, CDMX.</p>
+  <div class="hero-btns">
+    <a href="the-o-beauty-agenda.html" class="btn-primary">💅 Agenda tu cita</a>
+    <a href="https://wa.me/5529158051?text=Hola!%20Quiero%20info%20sobre%20sus%20servicios%20🌸" target="_blank" class="btn-secondary">💬 Escríbeme por WhatsApp</a>
+  </div>
+  <div class="hero-trust">
+    <span class="trust-pill">✨ Diseños únicos</span>
+    <span class="trust-pill">💎 Mano alzada</span>
+    <span class="trust-pill">🌸 +8 años de experiencia</span>
+    <span class="trust-pill">📍 Narvarte, CDMX</span>
+  </div>
+</section>
+
+<!-- SOBRE OLI -->
+<section class="sobre">
+  <div class="sobre-inner reveal">
+    <span class="sobre-tag">Hola, soy Oli 👋</span>
+    <h2>Un espacio hecho<br>con <em>amor para ti</em></h2>
+    <p class="sobre-script">donde tus uñas cobran vida</p>
+    <p>En The Õ Beauty nuestro objetivo no solo es resaltar tu belleza, sino brindarte un espacio seguro donde recibirás el mejor servicio con la más alta calidad. Ven a conocernos y déjate consentir por manos expertas. 🌸</p>
+    <div class="sobre-stats">
+      <div class="stat">
+        <span class="stat-num">+8</span>
+        <span class="stat-label">años de experiencia</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">💅</span>
+        <span class="stat-label">diseños únicos</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">🌸</span>
+        <span class="stat-label">clientas felices</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios">
+  <div class="servicios-inner">
+    <div class="section-header reveal">
+      <span class="section-tag">Lo que hacemos</span>
+      <h2 class="section-title">Nuestros <em>servicios</em></h2>
+      <p class="section-script">para cada tipo de uña 💖</p>
+    </div>
+    <div class="servicios-grid">
+      <div class="serv-card reveal reveal-delay-1">
+        <div class="serv-icon">💅</div>
+        <div class="serv-name">Gel semipermanente</div>
+        <div class="serv-meta">
+          <span>⏱ 40 min aprox.</span>
+          <span>📅 Dura hasta 21 días</span>
+        </div>
+        <div class="serv-desc">Base regular, color que dura con acabado impecable.</div>
+        <span class="serv-precio">desde $200</span>
+        <span class="serv-nota">*precio varía según largo y diseño</span>
+      </div>
+      <div class="serv-card reveal reveal-delay-2">
+        <div class="serv-icon">🌿</div>
+        <div class="serv-name">Rubber</div>
+        <div class="serv-meta">
+          <span>⏱ 90 min aprox.</span>
+          <span>📅 Dura hasta 28 días</span>
+        </div>
+        <div class="serv-desc">Base semiflexible, ideal para uñas cortas y naturales.</div>
+        <span class="serv-precio">desde $315</span>
+        <span class="serv-nota">*precio varía según largo y diseño</span>
+      </div>
+      <div class="serv-card reveal reveal-delay-1">
+        <div class="serv-icon">✨</div>
+        <div class="serv-name">Soft Gel</div>
+        <div class="serv-meta">
+          <span>⏱ 30 min aprox.</span>
+          <span>📅 Dura hasta 21 días</span>
+        </div>
+        <div class="serv-desc">Uña prefabricada con gel. Ideal para quien quiere un servicio rápido.</div>
+        <span class="serv-precio">desde $250</span>
+        <span class="serv-nota">*precio varía según largo y diseño</span>
+      </div>
+      <div class="serv-card reveal reveal-delay-2">
+        <div class="serv-icon">💎</div>
+        <div class="serv-name">Acrílico</div>
+        <div class="serv-meta">
+          <span>⏱ 60 min aprox.</span>
+          <span>📅 Dura hasta 24 días</span>
+        </div>
+        <div class="serv-desc">El favorito de muchas. Ideal para extensiones largas y reforzar la uña natural.</div>
+        <span class="serv-precio">desde $320</span>
+        <span class="serv-nota">*precio varía según largo y diseño</span>
+      </div>
+    </div>
+    <div class="servicios-cta reveal" style="margin-top:24px;">
+      <a href="https://wa.me/5529158051?text=Hola!%20Quisiera%20una%20cotización%20💅" target="_blank" class="btn-secondary" style="display:inline-flex;width:auto;max-width:280px;">💬 Cotiza tu servicio aquí</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section class="galeria">
+  <div class="galeria-inner">
+    <div class="section-header reveal">
+      <span class="section-tag">Nuestro trabajo</span>
+      <h2 class="section-title">Galería de <em>diseños</em></h2>
+      <p class="section-script">cada set, una obra de arte 🎨</p>
+    </div>
+    <div class="galeria-grid reveal">
+      <div class="g-item" onclick="openLb('img/IMG_4145.jpeg')">
+        <img src="img/IMG_4145.jpeg" alt="Arte en negro y plata" loading="lazy">
+        <div class="g-overlay"><span>Arte en negro y plata</span></div>
+      </div>
+      <div class="g-item" onclick="openLb('img/IMG_4116.jpeg')">
+        <img src="img/IMG_4116.jpeg" alt="Halloween pink" loading="lazy">
+        <div class="g-overlay"><span>Halloween pink</span></div>
+      </div>
+      <div class="g-item" onclick="openLb('img/IMG_4050.jpeg')">
+        <img src="img/IMG_4050.jpeg" alt="Ombre pastel" loading="lazy">
+        <div class="g-overlay"><span>Ombre pastel</span></div>
+      </div>
+      <div class="g-item" onclick="openLb('img/IMG_4038.jpeg')">
+        <img src="img/IMG_4038.jpeg" alt="Diseño Beetlejuice" loading="lazy">
+        <div class="g-overlay"><span>Diseño Beetlejuice</span></div>
+      </div>
+      <div class="g-item" onclick="openLb('img/IMG_3756.jpeg')">
+        <img src="img/IMG_3756.jpeg" alt="Iridiscente holográfico" loading="lazy">
+        <div class="g-overlay"><span>Iridiscente holográfico</span></div>
+      </div>
+      <div class="g-item" onclick="openLb('img/IMG_3602.jpeg')">
+        <img src="img/IMG_3602.jpeg" alt="Glitter galaxia" loading="lazy">
+        <div class="g-overlay"><span>Glitter galaxia</span></div>
+      </div>
+      <div class="g-item" onclick="openLb('img/IMG_3486.jpeg')">
+        <img src="img/IMG_3486.jpeg" alt="Chrome perla" loading="lazy">
+        <div class="g-overlay"><span>Chrome perla</span></div>
+      </div>
+      <div class="g-item" onclick="openLb('img/IMG_3434.jpeg')">
+        <img src="img/IMG_3434.jpeg" alt="Arte mano alzada" loading="lazy">
+        <div class="g-overlay"><span>Arte mano alzada</span></div>
+      </div>
+      <div class="g-item" onclick="openLb('img/IMG_4701.jpeg')">
+        <img src="img/IMG_4701.jpeg" alt="3D colorido" loading="lazy">
+        <div class="g-overlay"><span>Diseño 3D colorido</span></div>
+      </div>
+      <div class="g-item" onclick="openLb('img/IMG_5329.jpeg')">
+        <img src="img/IMG_5329.jpeg" alt="Perlas aurora" loading="lazy">
+        <div class="g-overlay"><span>Perlas aurora</span></div>
+      </div>
+      <div class="g-item" onclick="openLb('img/IMG_5882.jpeg')">
+        <img src="img/IMG_5882.jpeg" alt="Rojo animal print" loading="lazy">
+        <div class="g-overlay"><span>Rojo con animal print</span></div>
+      </div>
+      <div class="g-item" onclick="openLb('img/IMG_5875.jpeg')">
+        <img src="img/IMG_5875.jpeg" alt="Chrome blue butterfly" loading="lazy">
+        <div class="g-overlay"><span>Chrome blue butterfly</span></div>
+      </div>
+      <div class="g-item" onclick="openLb('img/IMG_5928.jpeg')">
+        <img src="img/IMG_5928.jpeg" alt="French negro abstract" loading="lazy">
+        <div class="g-overlay"><span>French negro abstract</span></div>
+      </div>
+      <div class="g-item" onclick="openLb('img/IMG_8247.jpeg')">
+        <img src="img/IMG_8247.jpeg" alt="Ombre rojo" loading="lazy">
+        <div class="g-overlay"><span>Ombre rojo</span></div>
+      </div>
+      <div class="g-item" onclick="openLb('img/IMG_9220.jpeg')">
+        <img src="img/IMG_9220.jpeg" alt="Diseño Yzma" loading="lazy">
+        <div class="g-overlay"><span>Diseño Yzma</span></div>
+      </div>
+      <div class="g-item" onclick="openLb('img/IMG_0283.jpeg')">
+        <img src="img/IMG_0283.jpeg" alt="Bow 3D rosa" loading="lazy">
+        <div class="g-overlay"><span>Bow 3D rosa</span></div>
+      </div>
+      <div class="g-item" onclick="openLb('img/IMG_0416.jpeg')">
+        <img src="img/IMG_0416.jpeg" alt="Corazones glitter" loading="lazy">
+        <div class="g-overlay"><span>Corazones glitter</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ OLI -->
+<section class="porqueli">
+  <div class="porqueli-inner">
+    <div class="section-header reveal">
+      <span class="section-tag">¿Por qué elegirnos?</span>
+      <h2 class="section-title">Tu experiencia es<br>nuestra <em>prioridad</em></h2>
+    </div>
+    <div class="porqueli-grid">
+      <div class="pq-card reveal reveal-delay-1">
+        <div class="pq-icon">🧴</div>
+        <div class="pq-title">Productos cuidadosamente elegidos</div>
+        <div class="pq-desc">Seleccionamos cada producto pensando en la salud y belleza de tus uñas.</div>
+      </div>
+      <div class="pq-card reveal reveal-delay-2">
+        <div class="pq-icon">✨</div>
+        <div class="pq-title">Higiene impecable</div>
+        <div class="pq-desc">Instrumentos esterilizados y espacio limpio garantizado en cada cita.</div>
+      </div>
+      <div class="pq-card reveal reveal-delay-1">
+        <div class="pq-icon">🎨</div>
+        <div class="pq-title">Diseños únicos</div>
+        <div class="pq-desc">Mano alzada, acrílicas, diseños personalizados 100% adaptados a tu estilo.</div>
+      </div>
+      <div class="pq-card reveal reveal-delay-2">
+        <div class="pq-icon">💖</div>
+        <div class="pq-title">Atención personalizada</div>
+        <div class="pq-desc">Te tratamos como la clienta especial que eres. Siempre con amor y dedicación.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA AGENDA -->
+<section class="cta-section">
+  <div class="cta-inner reveal">
+    <p class="cta-script">¿lista para tu próximo set?</p>
+    <h2>Agenda tu cita<br><em>ahora mismo</em> 🌸</h2>
+    <p>Los horarios se llenan rápido. Reserva el tuyo en minutos y asegura tu lugar con Oli.</p>
+    <a href="the-o-beauty-agenda.html" class="btn-white">💅 Reservar mi lugar</a>
+  </div>
+</section>
+
+<!-- PROGRAMAS -->
+<section class="programas">
+  <div class="programas-inner">
+    <div class="section-header reveal">
+      <span class="section-tag">Para clientas frecuentes</span>
+      <h2 class="section-title">Programas <em>exclusivos</em></h2>
+      <p class="section-script">porque las clientas merecen más 💎</p>
+    </div>
+    <div class="prog-grid">
+      <a href="the-o-beauty-loyalty.html" class="prog-card prog-loyalty reveal reveal-delay-1">
+        <div class="prog-icon">💳</div>
+        <div class="prog-name">Tarjeta de lealtad</div>
+        <div class="prog-desc">Acumula sellos en cada visita y gana servicios gratis. ¡Tú te lo mereces!</div>
+        <span class="prog-arrow">→</span>
+      </a>
+      <a href="the-o-beauty-rewards.html" class="prog-card prog-rewards reveal reveal-delay-2">
+        <div class="prog-icon">⭐</div>
+        <div class="prog-name">Rewards</div>
+        <div class="prog-desc">Gana créditos en cada visita y canjéalos cuando quieras en tu próximo servicio.</div>
+        <span class="prog-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section class="ubicacion">
+  <div class="ubicacion-inner">
+    <div class="section-header reveal">
+      <span class="section-tag">¿Dónde estamos?</span>
+      <h2 class="section-title">Visítanos en <em>CDMX</em></h2>
+    </div>
+    <div class="ubic-card reveal">
+      <div class="ubic-row">
+        <span class="ubic-icon">📍</span>
+        <div>
+          <span class="ubic-label">Ubicación</span>
+          <span class="ubic-val">Narvarte, Ciudad de México</span>
+        </div>
+      </div>
+      <div class="ubic-row">
+        <span class="ubic-icon">📱</span>
+        <div>
+          <span class="ubic-label">WhatsApp</span>
+          <span class="ubic-val">55 2915 8051</span>
+        </div>
+      </div>
+      <div class="ubic-row">
+        <span class="ubic-icon">📸</span>
+        <div>
+          <span class="ubic-label">Instagram</span>
+          <span class="ubic-val">@the.obeauty</span>
+        </div>
+      </div>
+      <a href="https://maps.app.goo.gl/JV7snRC5ogq1FHkr6" target="_blank" class="btn-maps">
+        📍 Cómo llegar — Google Maps
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">The Õ Beauty</div>
+  <p class="footer-tagline">"Uñas que hablan" 💅</p>
+  <div class="footer-social">
+    <a href="https://wa.me/5529158051" target="_blank" title="WhatsApp">💬</a>
+    <a href="https://instagram.com/the.obeauty" target="_blank" title="Instagram">📸</a>
+    <a href="https://www.tiktok.com/@the.obeauty" target="_blank" title="TikTok">🎵</a>
+    <a href="https://linktr.ee/the.obeautynails" target="_blank" title="Pinterest & más">🔗</a>
+  </div>
+  <div class="footer-links">
+    <a href="the-o-beauty-agenda.html">Agenda</a>
+    <a href="the-o-beauty-loyalty.html">Lealtad</a>
+    <a href="the-o-beauty-rewards.html">Rewards</a>
+    <a href="calculadora.html">Cotizadora</a>
+  </div>
+  <p class="footer-copy">© 2026 The Õ Beauty · Andrea Olinoloe · Narvarte, CDMX</p>
+</footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/5529158051?text=Hola!%20Me%20interesa%20agendar%20una%20cita%20🌸" target="_blank" class="wa-float" title="WhatsApp">💬</a>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lb" onclick="closeLb()">
+  <button class="lb-close">✕</button>
+  <img id="lbImg" src="" alt="">
+</div>
+
+<script>
+// Reveal on scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => {
+    if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'), i*80);
+  });
+}, { threshold:0.1 });
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Lightbox
+function openLb(src){
+  document.getElementById('lbImg').src=src;
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLb(){
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape')closeLb(); });
+</script>
+</body>
+</html>
