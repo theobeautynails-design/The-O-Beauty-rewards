@@ -620,10 +620,16 @@ async function autoSyncFromSheets(){
       if(!phone) return;
       const existe=clients.find(c=>c.phone.replace(/\D/g,'')=== phone);
       if(existe){
-        const n=nivelMap[(r.nivel||'').toLowerCase()];
-        if(n) existe.level=n;
-        if(r.nombre&&!existe.name) existe.name=r.nombre;
-      } else {
+  const n=nivelMap[(r.nivel||'').toLowerCase()];
+  if(n) existe.level=n;
+  if(r.nombre&&!existe.name) existe.name=r.nombre;
+  // Actualizar sellos si vienen de Sheets
+  const selloSheets=Number(r.sellos)||0;
+  const cardActual=existe.cards[existe.cards.length-1];
+  if(selloSheets>cardActual.stamps){
+    cardActual.stamps=selloSheets;
+  }
+} else {
         clients.push({
           id:'cs'+Date.now()+Math.random().toString(36).slice(2,6),
           phone, name:r.nombre||'', birth:r.nacimiento||'',
@@ -672,11 +678,16 @@ async function syncFromSheets(){
       if(!phone) return;
       const existe=clients.find(c=>c.phone.replace(/\D/g,'')===phone);
       if(existe){
-        const n=nivelMap[(r.nivel||'').toLowerCase()];
-        if(n) existe.level=n;
-        if(r.nombre&&!existe.name) existe.name=r.nombre;
-        actualizadas++;
-      } else {
+  const n=nivelMap[(r.nivel||'').toLowerCase()];
+  if(n) existe.level=n;
+  if(r.nombre&&!existe.name) existe.name=r.nombre;
+  const selloSheets=Number(r.sellos)||0;
+  const cardActual=existe.cards[existe.cards.length-1];
+  if(selloSheets>cardActual.stamps){
+    cardActual.stamps=selloSheets;
+  }
+  actualizadas++;
+} else {
         clients.push({
           id:'cs'+Date.now()+Math.random().toString(36).slice(2,6),
           phone, name:r.nombre||'', birth:r.nacimiento||'',
