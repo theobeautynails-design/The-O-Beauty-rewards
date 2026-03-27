@@ -918,7 +918,7 @@ function renderModalVisits(visits) {
   if (!visits.length) { el.innerHTML = '<p class="vl-empty">Sin visitas registradas</p>'; return; }
   el.innerHTML = visits.slice().reverse().map(v => `
     <div class="vl-row">
-      <span class="vl-date">${v.date || '—'}</span>
+      <span class="vl-date">${v.date || v[2] || '−'}</span>
       <div>
         <div class="vl-total">${v.total ? '$' + v.total : '—'}</div>
         <div class="vl-credit">${v.credit ? '+$' + v.credit : ''}</div>
