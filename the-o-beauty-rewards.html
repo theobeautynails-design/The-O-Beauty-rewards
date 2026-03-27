@@ -558,13 +558,13 @@ body{font-family:'Nunito',sans-serif;background:var(--soft);color:var(--text);mi
       <div class="credit-input-row">
         <input class="credit-input" id="mdlCreditAmt" type="number" placeholder="Monto ($)" min="0">
         <select class="credit-tipo" id="mdlCreditTipo">
-        <label>Fecha de visita</label>
-        <input type="date" id="mdlVisitDate" />
           <option value="normal">Normal ($10→$1)</option>
           <option value="bday">Cumpleaños ($10→$1.50)</option>
           <option value="promo">Con promo ($10→$0.50)</option>
           <option value="manual">Manual (monto directo)</option>
         </select>
+        <label>Fecha de visita</label>
+        <input type="date" id="mdlVisitDate" />
         <button class="btn-apply" onclick="applyCredit()">Aplicar</button>
       </div>
       <div class="msg msg-error" id="mdlError"></div>
