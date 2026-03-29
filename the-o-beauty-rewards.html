@@ -916,8 +916,6 @@ function openClientDetail(id) {
 function renderModalVisits(visits) {
   const el = document.getElementById('mdlVisits');
   if (!visits.length) { el.innerHTML = '<p class="vl-empty">Sin visitas registradas</p>'; return; }
-  el.innerHTML = visits.slice().reverse().filter(v => v !== null && v !== undefined).map(v => `
-    <div class="vl-row">
     el.innerHTML = visits.slice().reverse().filter(v => v !== null && v !== undefined).map(v => `
       <div>
         <div class="vl-total">${v.total ? '$' + v.total : '—'}</div>
