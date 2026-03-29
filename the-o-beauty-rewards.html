@@ -963,7 +963,13 @@ const res = await apiPost({
     document.getElementById('mdlAmount').textContent = '$' + parseFloat(currentClient.credit).toFixed(0);
     showMsg('mdlSuccess', creditAction === 'add' ? `✅ +$${creditEarned.toFixed(2)} créditos agregados` : `✅ -$${amt} créditos descontados`, 'success');
     document.getElementById('mdlCreditAmt').value = '';
-    loadAdminClients();
+if (creditAction === 'add') {
+  if (!currentClient.visits) currentClient.visits = [];
+  currentClient.visits.push({ date: visitDate, total: amt, credit: creditEarned });
+  renderModalVisits(currentClient.visits);
+}
+document.getElementById('mdlVisitDate').value = '';
+loadAdminClients();
   } else {
     showMsg('mdlError', 'Error al actualizar. Intenta de nuevo.', 'error');
   }
