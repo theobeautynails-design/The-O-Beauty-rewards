@@ -1240,8 +1240,8 @@ ${!esBloqueo&&!esWendy&&c.telefono&&c.telefono!=='-'?`
   ${c.estado!=='Pendiente'?`<a style="background:#FF6B35;color:#fff;border:none;border-radius:9px;padding:7px 11px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:4px;" href="https://wa.me/52${String(c.telefono||'').replace(/\D/g,'')}?text=${encodeURIComponent(`⏰ *¡Hola ${c.nombre}!*\n\nTe recordamos que tu cita es *hoy*:\n\n🕐 *${c.hora}* — ¡Ya casi!\n💅 *${c.servicio}*\n\n📍 The Õ Beauty\nhttps://maps.app.goo.gl/oBYRZgvjU2NBCTaJA\n\n¡Te esperamos! 🌸`)}" target="_blank">⏰ Recordatorio 1.5hrs</a>`:''}
 </div>
 `:''}
-        </div>`;
-        });
+        </div>
+`);
 if(esApertura){
   const horaLimpia=(c.hora||'').replace(/\(.*\)/,'').trim();
   const partes=horaLimpia.match(/(\d+):(\d+)\s*(AM|PM)/i);
