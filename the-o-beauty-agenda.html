@@ -913,7 +913,8 @@ select.form-input{cursor:pointer;}
       <button onclick="saveNuevaCita()">Guardar</button>
     </div>
   </div>
-</div>
+<div id="modalEditHora" class="modal-bg hidden">
+  <div class="modal">
     <div class="form-group">
       <label class="form-label">Nueva hora</label>
       <select class="form-input" id="editHora">
@@ -924,11 +925,11 @@ select.form-input{cursor:pointer;}
       </select>
     </div>
     <div class="modal-actions">
-      <button class="btn-secondary" style="flex:1" onclick="closeModal()">Cancelar</button>
-      <button class="btn-primary" style="flex:1" onclick="saveEdit()">Guardar</button>
+      <button class="btn-secondary" style="flex:1" onclick="closeModalEditHora()">Cancelar</button>
+      <button class="btn-primary" style="flex:1" onclick="saveEditHora()">Guardar</button>
     </div>
-  </div>
-</div>
+  </div><!-- cierre modal -->
+</div><!-- cierre modal-bg -->
 
 <script>
 const SCRIPT_URL='https://script.google.com/macros/s/AKfycbzZo1ZJSgiBdCGds9Bg6eySHm8C8UobgQKljLOYNpntmnIU_nA9ExSVUbr20wd9zPcCrw/exec';
