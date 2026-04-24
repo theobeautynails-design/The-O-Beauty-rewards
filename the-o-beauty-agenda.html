@@ -814,9 +814,34 @@ select.form-input{cursor:pointer;}
     <div class="modal-title">✏️ Editar cita</div>
     <input type="hidden" id="editId">
     <div class="form-group">
-      <label class="form-label">Nueva fecha</label>
-      <input class="form-input" id="editFecha" type="date">
-    </div><!-- cierre modalEdit -->
+  <label class="form-label">Nueva fecha</label>
+  <input class="form-input" id="editFecha" type="date">
+</div>
+<div class="form-group">
+  <label class="form-label">Nueva hora</label>
+  <input class="form-input" id="editHora" type="text" placeholder="Ej: 2:30 PM">
+</div>
+<div class="form-group">
+  <label class="form-label">Nombre</label>
+  <input class="form-input" id="editNombre" type="text">
+</div>
+<div class="form-group">
+  <label class="form-label">Servicio</label>
+  <input class="form-input" id="editServicio" type="text">
+</div>
+<div class="form-group">
+  <label class="form-label">Estado</label>
+  <select class="form-input" id="editEstado">
+    <option>Pendiente</option>
+    <option>Confirmada</option>
+    <option>Cancelada</option>
+  </select>
+</div>
+<div class="modal-btns">
+  <button onclick="closeModal()">Cancelar</button>
+  <button onclick="saveEdit()">Guardar</button>
+</div>
+</div></div>
 <div id="modalNueva" class="modal-bg hidden">
   <div class="modal-backdrop" onclick="closeModalNueva()"></div>
   <div class="modal-box">
@@ -1270,7 +1295,7 @@ async function loadAdminCitas(){
     <button class="btn-recordatorio" onclick="recordatorio('${c.nombre}','${c.telefono}','${c.fechaISO}','${c.hora}','12')">🕐 12hrs</button>
   `:''}
   ${!esBloqueo&&!esWendy?`
-    <button class="btn-xs btn-edit" onclick="openEdit('${c.id}','${c.fechaISO}','${c.hora}')">✏️ Editar</button>
+    <button class="btn-xs btn-edit" onclick="openEdit('${c.id}','${c.fechaISO}','${c.hora}','${c.nombre}','${c.servicio}','${c.estado}')">✏️ Editar</button>
     <button class="btn-xs" style="background:#e8f5e9;color:#2e7d32;border:none;border-radius:7px;padding:4px 8px;font-size:10.5px;cursor:pointer;" onclick="toggleDeposito('${c.id}','${c.depositoPagado}')">${c.depositoPagado==='Sí'?'💰 Depósito ✓':'💸 Depósito'}</button>
   `:''}
   <button class="btn-xs btn-cancel" onclick="cancelarCita('${c.id}')">✕ ${esBloqueo?'Desbloquear':esWendy?'Cancelar Wendy':'Cancelar'}</button>
@@ -1322,10 +1347,13 @@ async function cancelarCita(id){
   try{await fetch(`${SCRIPT_URL}?action=cancelarCita&id=${id}`);showToast('Horario liberado ✓');await loadCitasMes();renderCal();loadAdminCitas();}
   catch(e){showToast('Error','err');}
 }
-function openEdit(id,fecha,hora){
-  document.getElementById('editId').value=id;
-  document.getElementById('editFecha').value=fecha;
-  document.getElementById('editHora').value=hora;
+function openEdit(id, fecha, hora, nombre, servicio, estado){
+  document.getElementById('editId').value    = id;
+  document.getElementById('editFecha').value = fecha;
+  document.getElementById('editHora').value  = hora;
+  document.getElementById('editNombre').value  = nombre || '';
+  document.getElementById('editServicio').value = servicio || '';
+  document.getElementById('editEstado').value   = estado || 'Pendiente';
   document.getElementById('modalEdit').classList.remove('hidden');
 }
   function openModalNuevaCita(){
@@ -1358,13 +1386,18 @@ async function saveNuevaCita(){
 }
 function closeModal(){document.getElementById('modalEdit').classList.add('hidden');}
 async function saveEdit(){
-  const id=document.getElementById('editId').value;
-  const fecha=document.getElementById('editFecha').value;
-  const hora=document.getElementById('editHora').value;
+  const id       = document.getElementById('editId').value;
+  const fecha    = document.getElementById('editFecha').value;
+  const hora     = document.getElementById('editHora').value;
+  const nombre   = document.getElementById('editNombre').value;
+  const servicio = document.getElementById('editServicio').value;
+  const estado   = document.getElementById('editEstado').value;
   try{
-    await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'modificarCita',id,fechaISO:fecha,hora})});
+    await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({action:'modificarCita', id, fechaISO:fecha, hora, nombre, servicio, estado})
+    });
     showToast('Cita actualizada ✓'); closeModal(); await loadCitasMes(); renderCal(); loadAdminCitas();
-  }catch(e){showToast('Error al guardar','err');}
+  }catch(e){ showToast('Error al guardar','err'); }
 }
 async function bloquearHorario(){
   const fecha=document.getElementById('blkFecha').value;
